@@ -18,7 +18,7 @@
 
 프로젝트를 실행하기 전에 다음 명령어를 사용하여 필요한 종속성을 설치해야 합니다.
 
-```shell
+
 git clone https://github.com/your-repo.git
 cd your-repo
 npm install
@@ -27,4 +27,4 @@ npm install
 
 [![Video Label](http://img.youtube.com/vi/dsomJRW-sJA/0.jpg)](https://youtu.be/dsomJRW-sJA)
 
-
+```shell
