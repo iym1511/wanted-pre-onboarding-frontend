@@ -28,10 +28,11 @@ function App() {
     }
   }, []);
 
-  //페이지 로드시 실행
+  //페이지 로드시 실행된다.
   useEffect(() => {
     redirectIfLoggedIn();
   });
+
 
   return (
     <div className="App">
