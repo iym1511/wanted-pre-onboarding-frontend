@@ -48,5 +48,5 @@
     "@types/react-router-dom": "^5.3.3",
     "gh-pages": "^5.0.0"
   },
-  "homepage": "https://iym1511.github.io/wanted-pre-onboarding-frontend/"
+  "homepage": "."
 }
