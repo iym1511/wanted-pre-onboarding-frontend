@@ -10,25 +10,21 @@
 
 프로젝트를 실행하기 위해 다음의 요구 사항이 필요합니다.
 
-- git을 사용하여 프로젝트를 클론합니다.
-- npm 패키지 매니저를 사용하여 필요한 종속성을 설치합니다.
+- `git`을 사용하여 프로젝트를 클론합니다.
+- `npm` 패키지 매니저를 사용하여 필요한 종속성을 설치합니다.
 - 프로젝트를 시작합니다.
 
 ### 설치
 
 프로젝트를 실행하기 전에 다음 명령어를 사용하여 필요한 종속성을 설치해야 합니다.
 
+```shell
 git clone https://github.com/your-repo.git
 cd your-repo
 npm install
-
-### 실행
-다음 명령어를 사용하여 프로젝트를 실행합니다
-
-npm start
 
 ### 데모 영상
 
 [![Video Label](http://img.youtube.com/vi/dsomJRW-sJA/0.jpg)](https://youtu.be/dsomJRW-sJA)
 
-```shell
+
