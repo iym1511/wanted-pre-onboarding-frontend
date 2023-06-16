@@ -18,11 +18,11 @@ function App() {
     // 토큰이 있고 페이지가 /signin 이나 /signup 일 경우 /todo로
     // 토큰이 없고 페이지가 /todo면 /signin 으로 이동
     if (token) {
-      if (path === "/signin" || path === "/signup" || path === "/") {
+      if (path === "wanted-pre-onboarding-frontend/signin" || path === "wanted-pre-onboarding-frontend/signup" || path === "wanted-pre-onboarding-frontend/") {
         navigate("/todo");
       }
     } else {
-      if (path === "/todo") {
+      if (path === "wanted-pre-onboarding-frontend/todo") {
         navigate("/signin");
       }
     }
