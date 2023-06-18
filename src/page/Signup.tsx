@@ -1,7 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Signup = () => {
   // 버튼을 활성화 시켜주는데 사용
   const [notAllow, setNotAllow] = useState<boolean>(true);
@@ -15,15 +14,18 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const idCheck = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
-    setId(e.target.value);
-    const regex = /@/;
-    if (regex.test(e.target.value)) {
-      setEmailValid(true);
-    } else {
-      setEmailValid(false);
-    }
-  }, [id]);
+  const idCheck = useCallback(
+    (e: ChangeEvent<HTMLInputElement>): void => {
+      setId(e.target.value);
+      const regex = /@/;
+      if (regex.test(e.target.value)) {
+        setEmailValid(true);
+      } else {
+        setEmailValid(false);
+      }
+    },
+    [id]
+  );
 
   // 이메일 조건충족 확인
   const pwCheck = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
@@ -38,24 +40,24 @@ const Signup = () => {
 
   // 회원가입
   const createUser = () => {
-    fetch('https://www.pre-onboarding-selection-task.shop/auth/signup', {
-      method: 'POST',
+    fetch("https://www.pre-onboarding-selection-task.shop/auth/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: id,
         password: pw,
       }),
-    }).then(response => {
-      if(response.ok){
-        alert('회원가입되었습니다!');
-        navigate('/signin');
-      }else{
-        throw new Error('회원가입 실패');
+    }).then((response) => {
+      if (response.ok) {
+        alert("회원가입되었습니다!");
+        navigate("/signin");
+      } else {
+        throw new Error("회원가입 실패");
       }
-  })
-  }
+    });
+  };
 
   useEffect(() => {
     if (emailValid && pwValid) {
@@ -64,7 +66,6 @@ const Signup = () => {
       setNotAllow(true);
     }
   }, [emailValid, pwValid]);
-
 
   return (
     <div>
@@ -76,9 +77,7 @@ const Signup = () => {
         value={id}
         onChange={idCheck}
       />
-      {id == "" ? null : emailValid == false ? (
-        <p>@를 입력해주세요</p>
-      ) : null}
+      {id == "" ? null : emailValid == false ? <p>@를 입력해주세요</p> : null}
 
       <label>Password</label>
       <input
@@ -90,7 +89,11 @@ const Signup = () => {
       {pw == "" ? null : pwValid == false ? (
         <p>비밀번호를8자이상 입력해주세요</p>
       ) : null}
-      <button data-testid="signup-button" disabled={notAllow} onClick={createUser}>
+      <button
+        data-testid="signup-button"
+        disabled={notAllow}
+        onClick={createUser}
+      >
         회원가입
       </button>
     </div>
