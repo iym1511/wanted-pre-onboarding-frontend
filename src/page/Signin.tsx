@@ -15,6 +15,7 @@ const Signin = () => {
 
   const navigate = useNavigate();
 
+  // 아이디 확인 (@가 있는지 확인)
   const idCheck = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     setId(e.target.value);
     const regex = /@/;
@@ -25,7 +26,7 @@ const Signin = () => {
     }
   }, []);
 
-  // 이메일 조건충족 확인
+  // 패스워드 확인 (8글자 이하일때)
   const pwCheck = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
       setPw(e.target.value);
@@ -51,7 +52,7 @@ const Signin = () => {
         password: pw,
       }),
     })
-      .then((response: Response) => {
+      .then((response) => {
         return response.json();
       })
       .then((data) => {

@@ -32,6 +32,8 @@ const Todo = () => {
   // 내가 선택한 할일 id
   const [todoId, setTodoId] = useState<number>();
 
+  const [loading, setLoading] = useState(false);
+
   const onChangeText = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
       setText(e.target.value);
@@ -39,6 +41,7 @@ const Todo = () => {
     [text]
   );
 
+  // 로그인 할때 전송된 JWT토큰 가져옴
   const access_token: string | null = localStorage.getItem("token");
 
   const createTodo = (e: FormEvent<HTMLFormElement>) => {
@@ -46,7 +49,7 @@ const Todo = () => {
     fetch("https://www.pre-onboarding-selection-task.shop/todos", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        "Authorization": `Bearer ${access_token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -62,6 +65,7 @@ const Todo = () => {
       } else {
         alert("할일을 작성하여 주십시요.");
       }
+      setLoading(false); // 로딩 상태 해제
     });
   };
 
@@ -69,7 +73,7 @@ const Todo = () => {
     fetch(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        "Authorization": `Bearer ${access_token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -79,15 +83,15 @@ const Todo = () => {
     }).then((response) => {
       if (response.ok) {
         // 댓글이 성공적으로 수정되면 todoList의 상태를 업데이트
-        setTodoList((prevTodoList: todoType[]) => {
-          const updatedList = prevTodoList.map((todo) => {
-            if (todo.id === id) {
-              return { ...todo, todo: modifytext, isCompleted: true };
-            }
-            return todo;
-          });
-          return updatedList;
-        });
+        // setTodoList((prevTodoList: todoType[]) => {
+        //   const updatedList = prevTodoList.map((todo) => {
+        //     if (todo.id === id) {
+        //       return { ...todo, todo: modifytext, isCompleted: true };
+        //     }
+        //     return todo;
+        //   });
+        //   return updatedList;
+        // });
         setModifytext("");
         setModifyCheck(false);
       } else {
@@ -102,14 +106,15 @@ const Todo = () => {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
-    }).then((response) => {
-      if (response.ok) {
-        // 댓글이 성공적으로 수정되면 todoList의 상태를 업데이트
-        setTodoList((prevTodoList: todoType[]) =>
-          prevTodoList.filter((todo) => todo.id !== id)
-        );
-      }
-    });
+    })
+    // .then((response) => {
+    //   if (response.ok) {
+    //     // 댓글이 성공적으로 수정되면 todoList의 상태를 업데이트
+    //     setTodoList((prevTodoList: todoType[]) =>
+    //       prevTodoList.filter((todo) => todo.id !== id)
+    //     );
+    //   }
+    // });
   };
 
   useEffect(() => {
@@ -132,7 +137,7 @@ const Todo = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [nextId]);
+  },[todoList]);
 
   // input을 같은 id 끼리 띄워주기위한 변수저장
   // input창을 띄워주는 boolean 을 true 지정
