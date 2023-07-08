@@ -13,6 +13,12 @@ const Signin = () => {
   const [emailValid, setEmailValid] = useState<boolean>(false);
   const [pwValid, setPwValid] = useState<boolean>(false);
 
+  const [userInputs, setUserInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+
   const navigate = useNavigate();
 
   // 아이디 확인 (@가 있는지 확인)
@@ -83,6 +89,7 @@ const Signin = () => {
         data-testid="email-input"
         type="text"
         value={id}
+        name="Id"
         onChange={idCheck}
       />
       {id == "" ? null : emailValid == false ? (
@@ -96,6 +103,7 @@ const Signin = () => {
         data-testid="password-input"
         type="text"
         value={pw}
+        name="password"
         onChange={pwCheck}
       />
       {pw == "" ? null : pwValid == false ? (

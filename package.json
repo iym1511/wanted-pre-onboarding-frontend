@@ -46,7 +46,10 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
-    "gh-pages": "^5.0.0"
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "gh-pages": "^5.0.0",
+    "prettier": "^2.8.8"
   },
   "homepage": "."
 }

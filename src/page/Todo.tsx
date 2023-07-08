@@ -82,16 +82,6 @@ const Todo = () => {
       }),
     }).then((response) => {
       if (response.ok) {
-        // 댓글이 성공적으로 수정되면 todoList의 상태를 업데이트
-        // setTodoList((prevTodoList: todoType[]) => {
-        //   const updatedList = prevTodoList.map((todo) => {
-        //     if (todo.id === id) {
-        //       return { ...todo, todo: modifytext, isCompleted: true };
-        //     }
-        //     return todo;
-        //   });
-        //   return updatedList;
-        // });
         setModifytext("");
         setModifyCheck(false);
       } else {
@@ -107,14 +97,6 @@ const Todo = () => {
         Authorization: `Bearer ${access_token}`,
       },
     })
-    // .then((response) => {
-    //   if (response.ok) {
-    //     // 댓글이 성공적으로 수정되면 todoList의 상태를 업데이트
-    //     setTodoList((prevTodoList: todoType[]) =>
-    //       prevTodoList.filter((todo) => todo.id !== id)
-    //     );
-    //   }
-    // });
   };
 
   useEffect(() => {
