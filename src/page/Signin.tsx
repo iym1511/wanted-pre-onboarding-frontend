@@ -1,5 +1,6 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useInput, { Inputhandle } from "../hooks/useInputs";
 
 
 const Signin = () => {
@@ -13,11 +14,8 @@ const Signin = () => {
   const [emailValid, setEmailValid] = useState<boolean>(false);
   const [pwValid, setPwValid] = useState<boolean>(false);
 
-  const [userInputs, setUserInputs] = useState({
-    email: "",
-    password: "",
-  });
-
+  // 커스텀훅으로 가져온것
+  const [saveUserInputs, email, password]:Inputhandle = useInput();
 
   const navigate = useNavigate();
 
@@ -89,7 +87,6 @@ const Signin = () => {
         data-testid="email-input"
         type="text"
         value={id}
-        name="Id"
         onChange={idCheck}
       />
       {id == "" ? null : emailValid == false ? (
@@ -103,7 +100,6 @@ const Signin = () => {
         data-testid="password-input"
         type="text"
         value={pw}
-        name="password"
         onChange={pwCheck}
       />
       {pw == "" ? null : pwValid == false ? (
@@ -115,6 +111,7 @@ const Signin = () => {
         로그인
       </button>
       <button onClick={() => navigate("/signup")}>회원가입하러가기</button>
+      <input type="text" name="email" value={email} onChange={saveUserInputs}/>
     </div>
   );
 };
